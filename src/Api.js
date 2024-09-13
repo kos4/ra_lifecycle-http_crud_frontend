@@ -1,8 +1,4 @@
 export default class Api {
-  constructor() {
-    this.host = 'http://localhost:7070';
-  }
-
   getData(callback) {
     this.createRequest({
       input: '/notes',
@@ -33,7 +29,7 @@ export default class Api {
   }
 
   async createRequest(options) {
-    const response = await fetch(this.host + options.input, options.init);
+    const response = await fetch(process.env.REACT_APP_API_URL + options.input, options.init);
     options.callback(await response);
   }
 }
